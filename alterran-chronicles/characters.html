@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Characters | Freelance Saga Wiki</title>
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/effects.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Freelance Saga Wiki</h1>
+        <p>A Federation archive for the worldbuilding, cultures, magic, guilds, and characters of Alterra.</p>
+    </header>
+
+    <nav class="main-nav" aria-label="Main site navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cultures.html">Cultures</a></li>
+            <li><a href="guilds.html">Guilds</a></li>
+            <li><a href="characters.html">Characters</a></li>
+            <li><a href="style-guide.html">Style Guide</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>Characters</h2>
+            <p>The main party represents the future of Alterra: cultural blending, innovation, community care, responsibility, historical truth, and chosen connection.</p>
+        </section>
+
+        <section class="card-grid">
+            <article class="profile-card">
+                <h3>Clayton Silverhall</h3>
+                <p>Champion of Avmir, half Dwarf and half Orc, healer, alchemist, barista, and emotional center of the party.</p>
+            </article>
+            <article class="profile-card">
+                <h3>Miranda Greene</h3>
+                <p>Secret natural mage, adventurer, artificer, and catalyst for chaos hiding inside elite wizard society.</p>
+            </article>
+            <article class="profile-card">
+                <h3>A'eryn Basch</h3>
+                <p>Exiled elven Blade Magus and ferrofluid weapon innovator challenging tradition through technology.</p>
+            </article>
+            <article class="profile-card">
+                <h3>Ashwin Swift</h3>
+                <p>Graffiti sigil healer, found-family seeker, and street-level public servant.</p>
+            </article>
+            <article class="profile-card">
+                <h3>River Cobalt</h3>
+                <p>Veteran Ormyri gladiator, mentor, spokesperson, and hidden well of grief.</p>
+            </article>
+            <article class="profile-card">
+                <h3>Orion Riverrunner</h3>
+                <p>Halfling infiltrator, historian, survivor, and truth-bearer of forgotten conspiracies.</p>
+            </article>
+        </section>
+
+        <section class="form-panel" aria-labelledby="builder-title">
+            <h2 id="builder-title">Bonus: Build Your Own Character Starter</h2>
+            <p>Select an ancestry to generate a starter NPC concept for the Federation archive.</p>
+
+            <div class="form-row">
+                <label for="ancestry">Choose an ancestry:</label>
+                <select id="ancestry">
+                    <option value="">Select one</option>
+                    <option value="Human">Human</option>
+                    <option value="Dwarf">Dwarf</option>
+                    <option value="Orc">Orc</option>
+                    <option value="Halfling">Halfling</option>
+                    <option value="Ormyri">Ormyri</option>
+                </select>
+            </div>
+
+            <button id="generate-character" type="button">Generate Character</button>
+
+            <div id="character-result" class="result-box" aria-live="polite">
+                <p>Your generated character will appear here.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Freelance Saga Wiki. Created by Theodore McKenzie. All original setting content and self-created graphics are used by permission of the creator.</p>
+    </footer>
+    <script src="js/character-builder.js"></script>
+</body>
+</html>

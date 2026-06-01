@@ -1,0 +1,128 @@
+/* Freelance Saga Wiki - Format and Colors
+   Purpose: typography, color palette, and visual formatting
+*/
+
+:root {
+    --void-black: #111827;
+    --deep-archive: #0B1220;
+    --codex-panel: #1E293B;
+    --rift-blue: #3B82F6;
+    --mana-cyan: #22D3EE;
+    --crystal-violet: #8B5CF6;
+    --ember-gold: #F59E0B;
+    --verdant-glow: #10B981;
+    --federation-silver: #D1D5DB;
+    --soft-white: #F8FAFC;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.15), transparent 35%),
+        var(--void-black);
+    color: var(--federation-silver);
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: "Arial Narrow", "Trebuchet MS", Arial, sans-serif;
+    letter-spacing: 1px;
+}
+
+h1 {
+    color: var(--mana-cyan);
+    font-size: clamp(2rem, 5vw, 4rem);
+    text-shadow: 0 0 12px rgba(34, 211, 238, 0.65);
+}
+
+h2 {
+    color: var(--crystal-violet);
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+h3 {
+    color: var(--ember-gold);
+    font-size: 1.35rem;
+}
+
+a {
+    color: var(--mana-cyan);
+}
+
+a:hover,
+a:focus {
+    color: var(--ember-gold);
+}
+
+.site-header,
+.site-footer {
+    background: rgba(11, 18, 32, 0.95);
+}
+
+.site-header {
+    border-bottom: 3px solid var(--mana-cyan);
+}
+
+.site-footer {
+    border-top: 3px solid var(--crystal-violet);
+}
+
+.main-nav {
+    background: rgba(30, 41, 59, 0.96);
+}
+
+.main-nav a {
+    color: var(--soft-white);
+    text-decoration: none;
+}
+
+.hero,
+.panel,
+.entry-card,
+.feature-card,
+.profile-card,
+.form-panel {
+    background: rgba(30, 41, 59, 0.87);
+    border: 1px solid rgba(34, 211, 238, 0.45);
+    border-radius: 16px;
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
+}
+
+.badge,
+.button,
+button {
+    background: linear-gradient(135deg, var(--rift-blue), var(--crystal-violet));
+    color: var(--soft-white);
+    border: none;
+    border-radius: 999px;
+}
+
+.callout {
+    border-left: 5px solid var(--ember-gold);
+    background: rgba(245, 158, 11, 0.12);
+}
+
+.color-chip {
+    display: inline-block;
+    width: 4rem;
+    height: 1.5rem;
+    border: 1px solid var(--soft-white);
+    border-radius: 0.25rem;
+    vertical-align: middle;
+}
+
+.void-black { background: #111827; }
+.deep-archive { background: #0B1220; }
+.codex-panel { background: #1E293B; }
+.rift-blue { background: #3B82F6; }
+.mana-cyan { background: #22D3EE; }
+.crystal-violet { background: #8B5CF6; }
+.ember-gold { background: #F59E0B; }
+.verdant-glow { background: #10B981; }
+.federation-silver { background: #D1D5DB; }
