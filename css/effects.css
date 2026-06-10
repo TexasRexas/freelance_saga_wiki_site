@@ -65,3 +65,43 @@ button:focus,
     background: rgba(11, 18, 32, 0.85);
     border: 1px dashed rgba(245, 158, 11, 0.8);
 }
+
+
+.entry-card a.card-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.entry-card a.card-link:hover h3,
+.entry-card a.card-link:focus h3 {
+    color: #22D3EE;
+}
+
+
+.rank-card:hover {
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.28);
+}
+
+
+.license-close:hover,
+.license-close:focus {
+    color: #111827;
+    background: #F59E0B;
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.65);
+}
+
+.license-modal:target .license-card {
+    animation: licensePop 0.22s ease-out;
+}
+
+@keyframes licensePop {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

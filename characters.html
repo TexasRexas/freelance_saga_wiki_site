@@ -20,69 +20,449 @@
             <li><a href="cultures.html">Cultures</a></li>
             <li><a href="guilds.html">Guilds</a></li>
             <li><a href="characters.html">Characters</a></li>
-            <li><a href="style-guide.html">Style Guide</a></li>
         </ul>
     </nav>
 
-    <main>
+    <main id="characters">
         <section class="hero">
             <h2>Characters</h2>
-            <p>The main party represents the future of Alterra: cultural blending, innovation, community care, responsibility, historical truth, and chosen connection.</p>
+            <p>The main party represents the future of Alterra: cultural blending, innovation, community care, responsibility, historical truth, and chosen connection. Select a license to view a stylized Federation Freelancer record.</p>
         </section>
 
         <section class="card-grid">
             <article class="profile-card">
                 <h3>Clayton Silverhall</h3>
                 <p>Champion of Avmir, half Dwarf and half Orc, healer, alchemist, barista, and emotional center of the party.</p>
+                <a class="button license-trigger" href="#license-clayton">View Freelancer License</a>
             </article>
             <article class="profile-card">
                 <h3>Miranda Greene</h3>
                 <p>Secret natural mage, adventurer, artificer, and catalyst for chaos hiding inside elite wizard society.</p>
+                <a class="button license-trigger" href="#license-miranda">View Freelancer License</a>
             </article>
             <article class="profile-card">
-                <h3>A'eryn Basch</h3>
+                <h3>A’eryn Basch</h3>
                 <p>Exiled elven Blade Magus and ferrofluid weapon innovator challenging tradition through technology.</p>
-            </article>
-            <article class="profile-card">
-                <h3>Ashwin Swift</h3>
-                <p>Graffiti sigil healer, found-family seeker, and street-level public servant.</p>
+                <a class="button license-trigger" href="#license-aeryn">View Freelancer License</a>
             </article>
             <article class="profile-card">
                 <h3>River Cobalt</h3>
                 <p>Veteran Ormyri gladiator, mentor, spokesperson, and hidden well of grief.</p>
+                <a class="button license-trigger" href="#license-river">View Freelancer License</a>
+            </article>
+            <article class="profile-card">
+                <h3>Ashwin Swift</h3>
+                <p>Graffiti sigil healer, found-family seeker, and street-level public servant.</p>
+                <a class="button license-trigger" href="#license-ashwin">View Freelancer License</a>
             </article>
             <article class="profile-card">
                 <h3>Orion Riverrunner</h3>
                 <p>Halfling infiltrator, historian, survivor, and truth-bearer of forgotten conspiracies.</p>
+                <a class="button license-trigger" href="#license-orion">View Freelancer License</a>
             </article>
         </section>
 
         <section class="form-panel" aria-labelledby="builder-title">
-            <h2 id="builder-title">Bonus: Build Your Own Character Starter</h2>
-            <p>Select an ancestry to generate a starter NPC concept for the Federation archive.</p>
+            <h2 id="builder-title">Build Your Own Freelancer License</h2>
+            <p>Fill out the fields below to generate a Federation Freelancer License. You can also upload a portrait image, which will appear in the license photo space.</p>
 
-            <div class="form-row">
-                <label for="ancestry">Choose an ancestry:</label>
-                <select id="ancestry">
-                    <option value="">Select one</option>
-                    <option value="Human">Human</option>
-                    <option value="Dwarf">Dwarf</option>
-                    <option value="Orc">Orc</option>
-                    <option value="Halfling">Halfling</option>
-                    <option value="Ormyri">Ormyri</option>
-                </select>
+            <form id="license-builder-form">
+                <div class="license-builder-grid">
+                    <div class="form-row">
+                        <label for="builder-name">Character Name</label>
+                        <input type="text" id="builder-name" placeholder="Example: Nova Riverrunner">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-age">Age</label>
+                        <input type="text" id="builder-age" placeholder="Example: 24">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-race">Race / Heritage</label>
+                        <input type="text" id="builder-race" placeholder="Example: Halfling">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-archetype">Ancestral Archetype</label>
+                        <input type="text" id="builder-archetype" placeholder="Example: Trailblazer">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-gender">Gender</label>
+                        <input type="text" id="builder-gender" placeholder="Example: Non-Binary">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-guild">Guild Affiliation</label>
+                        <select id="builder-guild">
+                            <option value="">Choose a guild</option>
+                            <option value="Church Orders">Church Orders</option>
+                            <option value="Arena Guilds">Arena Guilds</option>
+                            <option value="Arcane Societies">Arcane Societies</option>
+                            <option value="Grand Masques">Grand Masques</option>
+                            <option value="Concordance Movement">Concordance Movement</option>
+                            <option value="Freelancer Association">Freelancer Association</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-guild-rank">Guild Rank</label>
+                        <select id="builder-guild-rank"></select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-freelancer-rank">Freelancer Rank</label>
+                        <select id="builder-freelancer-rank"></select>
+                    </div>
+                </div>
+
+                <div class="photo-upload-panel">
+                    <div class="builder-photo-frame">
+                        <img id="builder-photo-preview" class="builder-photo-preview" src="images/characters/placeholder.svg" alt="Uploaded portrait preview">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="builder-photo">Upload License Portrait</label>
+                        <input type="file" id="builder-photo" accept="image/*">
+                        <p>This image stays in your browser preview and is not uploaded anywhere.</p>
+                    </div>
+                </div>
+
+                <button type="submit">Generate Freelancer License</button>
+            </form>
+
+            <div id="generated-license" aria-live="polite"></div>
+        </section>
+
+        <section id="license-clayton" class="license-modal" aria-labelledby="license-title-clayton">
+            <div class="license-card">
+                <div class="license-topline">
+                    <div>
+                        <h2 id="license-title-clayton">Federation Freelancer License</h2>
+                        <p>Union City Freelancer Association Identification Record</p>
+                    </div>
+                    <a class="license-close" href="#characters" aria-label="Close Clayton Silverhall license">×</a>
+                </div>
+
+                <div class="license-content">
+                    <div class="license-photo-frame">
+                        <img class="license-photo" src="images/characters/clayton.png" alt="Clayton Silverhall license portrait">
+                    </div>
+
+                    <div class="license-details">
+                        <div class="license-field">
+                            <span class="license-label">Name</span>
+                            <span class="license-value">Clayton Silverhall</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Age</span>
+                            <span class="license-value">24</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Race</span>
+                            <span class="license-value">Mixed Heritage (Dwarf/Orc)</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Archetype</span>
+                            <span class="license-value">Hearthkeeper</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Gender</span>
+                            <span class="license-value">Male</span>
+                        </div>
+                        <div class="license-field full">
+                            <span class="license-label">Guild Affiliation</span>
+                            <span class="license-value">Church of Avemir, Lord of the Untamed Wilds</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Guild Rank</span>
+                            <span class="license-value">Champion – Langrave</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Freelancer Rank</span>
+                            <span class="license-value">Party Lead – Lead</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="license-stamp">Authorized Freelancer Record</div>
             </div>
+        </section>
+        <section id="license-miranda" class="license-modal" aria-labelledby="license-title-miranda">
+            <div class="license-card">
+                <div class="license-topline">
+                    <div>
+                        <h2 id="license-title-miranda">Federation Freelancer License</h2>
+                        <p>Union City Freelancer Association Identification Record</p>
+                    </div>
+                    <a class="license-close" href="#characters" aria-label="Close Miranda Greene license">×</a>
+                </div>
 
-            <button id="generate-character" type="button">Generate Character</button>
+                <div class="license-content">
+                    <div class="license-photo-frame">
+                        <img class="license-photo" src="images/characters/miranda.jpg" alt="Miranda Greene license portrait">
+                    </div>
 
-            <div id="character-result" class="result-box" aria-live="polite">
-                <p>Your generated character will appear here.</p>
+                    <div class="license-details">
+                        <div class="license-field">
+                            <span class="license-label">Name</span>
+                            <span class="license-value">Miranda Greene</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Age</span>
+                            <span class="license-value">19</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Race</span>
+                            <span class="license-value">Human</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Archetype</span>
+                            <span class="license-value">Pioneer</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Gender</span>
+                            <span class="license-value">Female</span>
+                        </div>
+                        <div class="license-field full">
+                            <span class="license-label">Guild Affiliation</span>
+                            <span class="license-value">Concordance Movement</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Guild Rank</span>
+                            <span class="license-value">Advocate – Organizer</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Freelancer Rank</span>
+                            <span class="license-value">Specialist – Associate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="license-stamp">Authorized Freelancer Record</div>
+            </div>
+        </section>
+        <section id="license-aeryn" class="license-modal" aria-labelledby="license-title-aeryn">
+            <div class="license-card">
+                <div class="license-topline">
+                    <div>
+                        <h2 id="license-title-aeryn">Federation Freelancer License</h2>
+                        <p>Union City Freelancer Association Identification Record</p>
+                    </div>
+                    <a class="license-close" href="#characters" aria-label="Close A’eryn Basch license">×</a>
+                </div>
+
+                <div class="license-content">
+                    <div class="license-photo-frame">
+                        <img class="license-photo" src="images/characters/aeryn.png" alt="A’eryn Basch license portrait">
+                    </div>
+
+                    <div class="license-details">
+                        <div class="license-field">
+                            <span class="license-label">Name</span>
+                            <span class="license-value">A’eryn Basch</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Age</span>
+                            <span class="license-value">22</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Race</span>
+                            <span class="license-value">Elf</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Archetype</span>
+                            <span class="license-value">Vanguard</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Gender</span>
+                            <span class="license-value">Male</span>
+                        </div>
+                        <div class="license-field full">
+                            <span class="license-label">Guild Affiliation</span>
+                            <span class="license-value">Magi-Tech R&amp;D Arena</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Guild Rank</span>
+                            <span class="license-value">Duelist – Cadet</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Freelancer Rank</span>
+                            <span class="license-value">Specialist – Associate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="license-stamp">Authorized Freelancer Record</div>
+            </div>
+        </section>
+        <section id="license-river" class="license-modal" aria-labelledby="license-title-river">
+            <div class="license-card">
+                <div class="license-topline">
+                    <div>
+                        <h2 id="license-title-river">Federation Freelancer License</h2>
+                        <p>Union City Freelancer Association Identification Record</p>
+                    </div>
+                    <a class="license-close" href="#characters" aria-label="Close River Cobalt license">×</a>
+                </div>
+
+                <div class="license-content">
+                    <div class="license-photo-frame">
+                        <img class="license-photo" src="images/characters/placeholder.svg" alt="River Cobalt license portrait">
+                    </div>
+
+                    <div class="license-details">
+                        <div class="license-field">
+                            <span class="license-label">Name</span>
+                            <span class="license-value">River Cobalt</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Age</span>
+                            <span class="license-value">27</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Race</span>
+                            <span class="license-value">Ormyri</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Archetype</span>
+                            <span class="license-value">Dragonguard</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Gender</span>
+                            <span class="license-value">Female</span>
+                        </div>
+                        <div class="license-field full">
+                            <span class="license-label">Guild Affiliation</span>
+                            <span class="license-value">The Grand Battle Arena</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Guild Rank</span>
+                            <span class="license-value">Icon – Headliner</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Freelancer Rank</span>
+                            <span class="license-value">Specialist – Specialist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="license-stamp">Authorized Freelancer Record</div>
+            </div>
+        </section>
+        <section id="license-ashwin" class="license-modal" aria-labelledby="license-title-ashwin">
+            <div class="license-card">
+                <div class="license-topline">
+                    <div>
+                        <h2 id="license-title-ashwin">Federation Freelancer License</h2>
+                        <p>Union City Freelancer Association Identification Record</p>
+                    </div>
+                    <a class="license-close" href="#characters" aria-label="Close Ashwin Swift license">×</a>
+                </div>
+
+                <div class="license-content">
+                    <div class="license-photo-frame">
+                        <img class="license-photo" src="images/characters/placeholder.svg" alt="Ashwin Swift license portrait">
+                    </div>
+
+                    <div class="license-details">
+                        <div class="license-field">
+                            <span class="license-label">Name</span>
+                            <span class="license-value">Ashwin Swift</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Age</span>
+                            <span class="license-value">18</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Race</span>
+                            <span class="license-value">Lycan</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Archetype</span>
+                            <span class="license-value">Leonid</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Gender</span>
+                            <span class="license-value">Non-Binary</span>
+                        </div>
+                        <div class="license-field full">
+                            <span class="license-label">Guild Affiliation</span>
+                            <span class="license-value">Union City Arcane Academy</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Guild Rank</span>
+                            <span class="license-value">Luminary – Fellow</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Freelancer Rank</span>
+                            <span class="license-value">Prospect – Junior Freelancer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="license-stamp">Authorized Freelancer Record</div>
+            </div>
+        </section>
+        <section id="license-orion" class="license-modal" aria-labelledby="license-title-orion">
+            <div class="license-card">
+                <div class="license-topline">
+                    <div>
+                        <h2 id="license-title-orion">Federation Freelancer License</h2>
+                        <p>Union City Freelancer Association Identification Record</p>
+                    </div>
+                    <a class="license-close" href="#characters" aria-label="Close Orion Riverrunner license">×</a>
+                </div>
+
+                <div class="license-content">
+                    <div class="license-photo-frame">
+                        <img class="license-photo" src="images/characters/placeholder.svg" alt="Orion Riverrunner license portrait">
+                    </div>
+
+                    <div class="license-details">
+                        <div class="license-field">
+                            <span class="license-label">Name</span>
+                            <span class="license-value">Orion Riverrunner</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Age</span>
+                            <span class="license-value">21</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Race</span>
+                            <span class="license-value">Halfling</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Archetype</span>
+                            <span class="license-value">Historian</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Gender</span>
+                            <span class="license-value">Male</span>
+                        </div>
+                        <div class="license-field full">
+                            <span class="license-label">Guild Affiliation</span>
+                            <span class="license-value">Enso Ensemble</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Guild Rank</span>
+                            <span class="license-value">Shadow – Stagehand</span>
+                        </div>
+                        <div class="license-field">
+                            <span class="license-label">Freelancer Rank</span>
+                            <span class="license-value">Specialist – Specialist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="license-stamp">Authorized Freelancer Record</div>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2026 Freelance Saga Wiki. Created by Theodore McKenzie. All original setting content and self-created graphics are used by permission of the creator.</p>
+        <p>&copy; 2026 Freelance Saga Wiki. Created by Theodore McKenzie. All original setting content and self-created graphics are used by permission of the creator.</p><p><a href="style-guide.html">Style Guide</a></p>
     </footer>
     <script src="js/character-builder.js"></script>
 </body>

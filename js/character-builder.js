@@ -1,52 +1,163 @@
-// Bonus interactive component: simple Alterra character starter generator
+// Interactive component: Federation Freelancer License Builder
 
-const names = {
-    Human: ["Adrian Valebrook", "Lyra Ashford", "Elias Castellan"],
-    Dwarf: ["Rhys Silverhall", "Nia Copperhearth", "Seren Ironside"],
-    Orc: ["Kabir Stormchaser", "Aanya Stonecleaver", "Priya Shadowstalker"],
-    Halfling: ["Orion Riverrunner", "Astra Seabrook", "Nova Bareboat"],
-    Ormyri: ["Zephyr Crimson", "Ember Saffron", "Cascade Azure"]
+const guildRanks = {
+    "Church Orders": ["Acolyte – Deacon", "Theurge – Evangelist", "Champion – Langrave", "Warden – Page"],
+    "Arena Guilds": ["Brawler – Pitborn", "Duelist – Cadet", "Icon – Prospect", "Reaver – Hound"],
+    "Arcane Societies": ["Scholar – Apprentice", "Magister – Scribe", "Luminary – Fellow", "Arbiter – Examiner"],
+    "Grand Masques": ["Player – Extra", "Gallant – Courtier", "Virtuoso – Trouper", "Shadow – Stagehand"],
+    "Concordance Movement": ["Kindled – Awakened", "Advocate – Organizer", "Herald – Voice", "Guardian – Shieldbearer"],
+    "Freelancer Association": ["Prospect – Applicant", "Specialist – Associate", "Party Lead – Lead", "Guild Exemplar – Proctor"]
 };
 
-const archetypes = {
-    Human: ["Diplomat", "Pioneer", "Vanguard"],
-    Dwarf: ["Hearthkeeper", "Virtuoso", "Stalwart"],
-    Orc: ["Nemophilist", "Hospitalier", "Condottiere"],
-    Halfling: ["Historian", "Supplier", "Trailblazer"],
-    Ormyri: ["Dragonguard", "Skyrider", "Emberwright"]
-};
+const freelancerRanks = [
+    "Prospect – Applicant",
+    "Prospect – Initiate",
+    "Prospect – Junior Freelancer",
+    "Specialist – Associate",
+    "Specialist – Specialist",
+    "Party Lead – Lead",
+    "Party Lead – Contract Captain",
+    "Guild Exemplar – Proctor"
+];
 
-const guilds = ["Church Orders", "Arena Guilds", "Arcane Societies", "Grand Masques", "Concordance Movement"];
+function populateSelect(select, options, placeholder) {
+    select.innerHTML = "";
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = placeholder;
+    select.appendChild(first);
 
-function randomItem(list) {
-    return list[Math.floor(Math.random() * list.length)];
+    options.forEach(optionText => {
+        const option = document.createElement("option");
+        option.value = optionText;
+        option.textContent = optionText;
+        select.appendChild(option);
+    });
 }
 
-function buildCharacter() {
-    const ancestry = document.getElementById("ancestry").value;
-    const result = document.getElementById("character-result");
+function updateGuildRanks() {
+    const guild = document.getElementById("builder-guild").value;
+    const guildRank = document.getElementById("builder-guild-rank");
 
-    if (!ancestry) {
-        result.innerHTML = "<strong>Archive Error:</strong> Select an ancestry to generate a character starter.";
+    if (guild && guildRanks[guild]) {
+        populateSelect(guildRank, guildRanks[guild], "Choose a guild rank");
+    } else {
+        populateSelect(guildRank, [], "Choose a guild first");
+    }
+}
+
+function readPortraitUpload(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById("builder-photo-preview");
+
+    if (!file) {
+        preview.src = "images/characters/placeholder.svg";
         return;
     }
 
-    const characterName = randomItem(names[ancestry]);
-    const archetype = randomItem(archetypes[ancestry]);
-    const guild = randomItem(guilds);
+    const reader = new FileReader();
+    reader.onload = () => {
+        preview.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+}
 
-    result.innerHTML = `
-        <h3>${characterName}</h3>
-        <p><strong>Ancestry:</strong> ${ancestry}</p>
-        <p><strong>Ancestral Archetype:</strong> ${archetype}</p>
-        <p><strong>Suggested Guild:</strong> ${guild}</p>
-        <p><strong>Story Hook:</strong> This character has recently arrived in Union City seeking work, belonging, and a chance to leave a mark on the Federation.</p>
+function generateLicense(event) {
+    event.preventDefault();
+
+    const data = {
+        name: document.getElementById("builder-name").value.trim() || "Unnamed Freelancer",
+        age: document.getElementById("builder-age").value.trim() || "Unknown",
+        race: document.getElementById("builder-race").value.trim() || "Unlisted",
+        archetype: document.getElementById("builder-archetype").value.trim() || "Unlisted",
+        gender: document.getElementById("builder-gender").value.trim() || "Unlisted",
+        guild: document.getElementById("builder-guild").value || "Independent",
+        guildRank: document.getElementById("builder-guild-rank").value || "Unranked",
+        freelancerRank: document.getElementById("builder-freelancer-rank").value || "Unranked",
+        photo: document.getElementById("builder-photo-preview").src
+    };
+
+    const output = document.getElementById("generated-license");
+
+    output.innerHTML = `
+        <div class="license-card generated-license-card">
+            <div class="license-topline">
+                <div>
+                    <h2>Federation Freelancer License</h2>
+                    <p>Union City Freelancer Association Identification Record</p>
+                </div>
+            </div>
+
+            <div class="license-content">
+                <div class="license-photo-frame">
+                    <img class="license-photo" src="${data.photo}" alt="${data.name} uploaded license portrait">
+                </div>
+
+                <div class="license-details">
+                    <div class="license-field">
+                        <span class="license-label">Name</span>
+                        <span class="license-value">${data.name}</span>
+                    </div>
+                    <div class="license-field">
+                        <span class="license-label">Age</span>
+                        <span class="license-value">${data.age}</span>
+                    </div>
+                    <div class="license-field">
+                        <span class="license-label">Race</span>
+                        <span class="license-value">${data.race}</span>
+                    </div>
+                    <div class="license-field">
+                        <span class="license-label">Archetype</span>
+                        <span class="license-value">${data.archetype}</span>
+                    </div>
+                    <div class="license-field">
+                        <span class="license-label">Gender</span>
+                        <span class="license-value">${data.gender}</span>
+                    </div>
+                    <div class="license-field full">
+                        <span class="license-label">Guild Affiliation</span>
+                        <span class="license-value">${data.guild}</span>
+                    </div>
+                    <div class="license-field">
+                        <span class="license-label">Guild Rank</span>
+                        <span class="license-value">${data.guildRank}</span>
+                    </div>
+                    <div class="license-field">
+                        <span class="license-label">Freelancer Rank</span>
+                        <span class="license-value">${data.freelancerRank}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="license-stamp">Generated Freelancer Record</div>
+        </div>
     `;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const button = document.getElementById("generate-character");
-    if (button) {
-        button.addEventListener("click", buildCharacter);
+    const guildSelect = document.getElementById("builder-guild");
+    const guildRankSelect = document.getElementById("builder-guild-rank");
+    const freelancerSelect = document.getElementById("builder-freelancer-rank");
+    const portraitUpload = document.getElementById("builder-photo");
+    const form = document.getElementById("license-builder-form");
+
+    if (guildRankSelect) {
+        populateSelect(guildRankSelect, [], "Choose a guild first");
+    }
+
+    if (freelancerSelect) {
+        populateSelect(freelancerSelect, freelancerRanks, "Choose a freelancer rank");
+    }
+
+    if (guildSelect) {
+        guildSelect.addEventListener("change", updateGuildRanks);
+    }
+
+    if (portraitUpload) {
+        portraitUpload.addEventListener("change", readPortraitUpload);
+    }
+
+    if (form) {
+        form.addEventListener("submit", generateLicense);
     }
 });
